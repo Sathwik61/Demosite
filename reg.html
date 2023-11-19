@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gram panchayath Shiriyara</title>
+  <!-- Add the Tailwind CSS CDN link -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Add additional styles if needed */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+      width: 30vw;
+      height: 30vw;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #4a5568;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.25rem;
+      color: #2d3748;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      background-color: #1a202c;
+      color: #ffffff;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2d3748;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Make the form elements responsive */
+    @media screen and (max-width: 640px) {
+      .popup {
+        width: 90vw;
+        height: 90vw;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-gray-100">
+  <nav class="bg-blue-500 p-4 flex items-center justify-between">
+    <div class="text-white text-lg font-bold">Gram Panchayat Shiriyara</div>
+    <div class="space-x-10 mr-8">
+      <!-- <a href="#" class="text-white">About</a> -->
+      <!-- <a href="#" class="text-white">Gallery</a> -->
+      <a href="./reg.html" class="text-white" target="_blank">Register</a>
+    </div>
+  </nav>
+
+  <!-- Form Section -->
+  <div class="container mx-auto p-8">
+    <form id="paymentForm" action="#" method="POST">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="rounded-md">
+        </div>
+        <div>
+          <label for="village">Village</label>
+          <input type="text" id="village" name="village" class="rounded-md" required>
+        </div>
+        <div>
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" name="pincode" class="rounded-md" required>
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" name="phone" class="rounded-md" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="rounded-md" required>
+        </div>
+        <div>
+          <label for="transactionId">Transaction ID</label>
+          <input type="text" id="transactionId" name="transactionId" class="rounded-md" required>
+        </div>
+        <div class="md:col-span-2">
+          <label for="address">Full Address</label>
+          <textarea id="address" name="address" rows="4" required class="rounded-md"></textarea>
+        </div>
+
+        <div class="md:col-span-2 flex items-center justify-center mt-4">
+          <button type="button" id="payButton" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">Pay
+            Now</button>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="mt-6 text-center">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Popup Section -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button type="button" id="close">X</button>
+      <div class="flex justify-center">
+        <img src="/qr.png" alt="Payment Image">
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- JavaScript for Popup functionality -->
+  <script>
+    const form = document.getElementById('paymentForm')
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+    })
+    const payButton = document.getElementById('payButton');
+    const popup = document.getElementById('popup');
+
+    payButton.addEventListener('click', () => {
+      popup.style.display = 'block';
+
+      window.onclick = function (event) {
+        if (event.target === popup) {
+          popup.style.display = 'none';
+        }
+      };
+    });
+    const cbtn = document.getElementById('close')
+    cbtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.style.display = 'none';
+
+    })
+  </script>
+
+  <!-- JavaScript for Form Submission Alert -->
+  <script>
+    const paymentForm = document.getElementById('paymentForm');
+
+    paymentForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      alert('Your form has been submitted!');
+    });
+    const bb = document.getElementById('bb')
+    bb.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.style.display = 'none';
+
+    })
+  </script>
+
+</body>
+
+</html>
